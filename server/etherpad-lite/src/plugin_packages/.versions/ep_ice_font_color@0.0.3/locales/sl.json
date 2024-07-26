@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"HairyFotr"
+		]
+	},
+	"ep_ice_font_color.black": "črna",
+	"ep_ice_font_color.red": "rdeča",
+	"ep_ice_font_color.green": "zelena",
+	"ep_ice_font_color.blue": "modra",
+	"ep_ice_font_color.yellow": "rumena",
+	"ep_ice_font_color.orange": "oranžna"
+}

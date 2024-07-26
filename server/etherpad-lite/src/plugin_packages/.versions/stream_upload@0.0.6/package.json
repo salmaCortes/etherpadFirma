@@ -1,0 +1,39 @@
+{
+  "name": "stream_upload",
+  "version": "0.0.6",
+  "description": "Node.js library to stream files to several storage locations (s3, local ...)",
+  "license": "Apache-2.0",
+  "main": "index",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/citizenos/stream_upload.git"
+  },
+  "keywords": [
+    "file",
+    "s3",
+    "upload",
+    "stream"
+  ],
+  "author": "CitizenOS <ilmar@citizenos.com> (https://github.com/citizenos)",
+  "bugs": {
+    "url": "https://github.com/citizenos/stream_upload/issues"
+  },
+  "homepage": "https://github.com/citizenos/stream_upload",
+  "dependencies": {
+    "aws-sdk": "^2.927.0",
+    "fs-extra": "^5.0.0",
+    "mime-types": "^2.1.31",
+    "underscore": "^1.8.3",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
