@@ -13,7 +13,8 @@ import i18n from "./localization/i18n.ts";
 import {PadPage} from "./pages/PadPage.tsx";
 import {ToastDialog} from "./utils/Toast.tsx";
 import {ShoutPage} from "./pages/ShoutPage.tsx";
-import {Firmar} from "./pages/Firmar.tsx";
+import { Firmar } from './pages/Firmar.tsx';
+import SubirArchivo from './pages/SubirArchivo.tsx';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,6 +29,9 @@ const router = createBrowserRouter(
             </Route>
             <Route path="/login">
                 <Route index element={<LoginScreen />} />
+            </Route>
+            <Route path="/subirArchivo">
+                <Route index element={<SubirArchivo />} />
             </Route>
             <Route path="/firmar">
                 <Route index element={<Firmar />} />
