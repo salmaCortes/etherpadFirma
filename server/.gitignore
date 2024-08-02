@@ -1,7 +1,7 @@
 /etherpad-lite/etherpad-win.exe
 /etherpad-lite/etherpad-win.zip
 /etherpad-lite!settings.json.template
-/etherpad-lite/APIKEY.txt
+
 /etherpad-liteSESSIONKEY.txt
 /etherpad-lite/var/dirty.db
 /etherpad-lite/.env
@@ -24,4 +24,10 @@
 /etherpad-lite//src/test-results
 /etherpad-lite/playwright-report
 /etherpad-lite/state.json
+
+# node modules
+/etherpad-lite/admin/node_modules
+/etherpad-lite/node_modules
+#apikey
+/etherpad-lite/APIKEY.txt
 
