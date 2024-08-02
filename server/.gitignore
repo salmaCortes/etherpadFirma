@@ -1,9 +1,9 @@
 /etherpad-win.exe
 /etherpad-win.zip
 node_modules/
-/settings.json
+/etherpad-lite/node_modules
 !settings.json.template
-APIKEY.txt
+/etherpad-lite/APIKEY.txt
 SESSIONKEY.txt
 var/dirty.db
 .env
@@ -26,5 +26,4 @@ plugin_packages
 /src/test-results
 playwright-report
 state.json
-601a87ab7f81cdc9b59e24fbe404210502bc7766
-node_modules/.pnpm/canvas@2.11.2/node_modules/canvas/build/Release/librsvg-2.so.2
+
