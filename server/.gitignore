@@ -5,7 +5,7 @@ node_modules/
 !settings.json.template
 /etherpad-lite/APIKEY.txt
 SESSIONKEY.txt
-var/dirty.db
+server/etherpad-lite/var/dirty.db
 .env
 *~
 *.patch
