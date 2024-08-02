@@ -1,6 +1,6 @@
 /etherpad-win.exe
 /etherpad-win.zip
-node_modules/
+/admin/node_modules
 !settings.json.template
 APIKEY.txt
 SESSIONKEY.txt
@@ -30,3 +30,4 @@ state.json
 canvas/
 /601a87ab7f81cdc9b59e24fbe404210502bc7766
 /node_modules/.pnpm/canvas@2.11.2/node_modules/canvas/build/Release/librsvg-2.so.2
+node_modules/
