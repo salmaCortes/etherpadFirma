@@ -23,8 +23,8 @@ out/
 /src/bin/etherpad-1.deb
 /src/bin/node.exe
 plugin_packages
-/src/templates/admin
 /src/test-results
 playwright-report
 state.json
-/src/static/oidc
+601a87ab7f81cdc9b59e24fbe404210502bc7766
+server/etherpad-lite/node_modules/.pnpm/canvas@2.11.2/node_modules/canvas/build/Release/librsvg-2.so.2
