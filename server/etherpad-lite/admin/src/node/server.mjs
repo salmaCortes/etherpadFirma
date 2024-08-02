@@ -5,12 +5,14 @@ import fs from 'fs';
 import pkg from 'pg';
 const { Pool } = pkg;
 import cors from 'cors';
-import { PDFDocument } from 'pdf-lib';
-import imageSize from 'image-size';
+import { PDFDocument,rgb } from 'pdf-lib';
 import bodyParser from 'body-parser';
 import formidable from 'formidable';
 import pdfjs from 'pdfjs-dist';
 const { getDocument } = pdfjs;
+import sharp from 'sharp';
+
+
 
 // Crea una instancia de Express
 const app = express();
@@ -121,13 +123,13 @@ app.post('/subirArchivo', upload.single('archivo'), (req, res) => {
   const rutaArchivo = req.rutarelativaArchivo;
 
   pool.query(
-    'INSERT INTO pdf_files (documento, carpeta, tipo_documento, descripcion, file_path) VALUES ($1, $2, $3, $4, $5)',
-    [nombreArchivo, nombreCarpeta, tipoDocumento, null, rutaArchivo],
+    'INSERT INTO pdf_files (documento, carpeta, tipo_documento, descripcion, file_path, patron_presente) VALUES ($1, $2, $3, $4, $5, $6)',
+    [nombreArchivo, nombreCarpeta, tipoDocumento, null, rutaArchivo, true],
     (dbErr) => {
       if (dbErr) {
         return res.status(500).send('Error al guardar la información del archivo en la base de datos');
       }
-
+      
       res.status(200).send('Archivo subido exitosamente');
     }
   );
@@ -138,7 +140,7 @@ app.post('/subirArchivo', upload.single('archivo'), (req, res) => {
 // Manejo del backend de la solicitud GET
 app.get('/firmar', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM pdf_files WHERE tipo_documento != $1', ['Firma']);
+    const result = await pool.query('SELECT * FROM pdf_files WHERE tipo_documento != $1 AND patron_presente != $2', ['Firma',false]);
     res.status(200).json(result.rows);
   } catch (error) {
     console.error('Error al obtener los registros de la base de datos:', error);
@@ -177,31 +179,26 @@ app.post('/subirArchivoFirmado', (req, res) => {
    
       // Decodificar la firma y guardarla como archivo
       const [formato, imgstr] = firma_data_url.split(';base64,');
-      const ext = formato.split('/').pop();
-      const buffer = Buffer.from(imgstr, 'base64');
+      const ext = formato.split('/').pop(); //extensión de la imagen
+      const buffer = Buffer.from(imgstr, 'base64'); //imagen tipo bit64
       const fileName = `firmaUsuario_documento:${documentoContrato}.${ext}`;
+
       const ubicacionParaGuardarFirma = path.join(directorioFirmas, fileName);
 
-      // Guardar la firma en el servidor
-      fs.writeFileSync(ubicacionParaGuardarFirma, buffer);
+      // Convertir la imagen a PNG y guardar en la ubicación especificada
+      sharp(buffer)
+      .toFormat('png')
+      .toFile(ubicacionParaGuardarFirma, (err, info) => {
+        if (err) {
+          console.error('Error al guardar la firma:', err);
+        } else {
+          console.log('Firma guardada exitosamente:', info);
+        }
+      });
 
-      const firmaArchiBD = `Firma_generada_por_usuario_para_el_doc:${documentoContrato}`;
+     
 
-      // Guardar la firma en la base de datos
-      const consultaBD = `
-        INSERT INTO pdf_files (documento, carpeta, tipo_documento, descripcion, file_path)
-        VALUES ($1, $2, $3, $4, $5)
-      `;
-      const values = [
-        firmaArchiBD,
-        carpeta,
-        'Firma',
-        documentoContrato,
-        ubicacionParaGuardarFirma
-      ];
-
-      await pool.query(consultaBD, values);
-      console.log('Firma guardada en la base de datos');
+      
 
       // Obtener la nueva versión del documento
       const obtenerCantidadYVersion = async () => {
@@ -236,15 +233,31 @@ app.post('/subirArchivoFirmado', (req, res) => {
           const pdfDoc = await loadingTask.promise;
           const coords = [];
       
-          // Recorrer las páginas del PDF
           for (let i = 0; i < pdfDoc.numPages; i++) {
-            const page = await pdfDoc.getPage(i + 1);
-            const textContent = await page.getTextContent();
+            const page = await pdfDoc.getPage(i + 1); // Obtenemos las páginas del PDF
+            const textContent = await page.getTextContent(); // Obtenemos el texto de cada página del PDF
       
-            // Buscar el patrón en el contenido de texto
-            for (const item of textContent.items) {
+            for (const item of textContent.items) { // Recorremos cada texto en el archivo PDF
               if (item.str.includes(patron)) {
-                coords.push({ patron: patron, page: i + 1, x: item.transform[4], y: item.transform[5] });
+                // Obtener las coordenadas del texto
+                const x = item.transform[4];
+                const y = item.transform[5];
+                
+                // Calcular el tamaño del patron y añadir un margen adicional
+                const width = item.width || 0; //tendrá valor de cero si el patron no tiene anchura
+                const height = item.height || 0; //tendrá valor de cero si el patron no tiene altura
+      
+                // Ajuste para cubrir los corchetes y otros elementos visuales
+                const margin = 10; // Margen adicional para incluir los corchetes
+      
+                coords.push({
+                  patron,
+                  page: i + 1,
+                  x: x - margin,
+                  y: y - margin,
+                  width: width + 2 * margin, //width: width + (2 * margin)
+                  height: height + 2 * margin
+                });
               }
             }
           }
@@ -252,9 +265,11 @@ app.post('/subirArchivoFirmado', (req, res) => {
           return coords;
         } catch (error) {
           console.error('Error al encontrar coordenadas:', error);
-          throw error;  // Re-lanzar el error para manejarlo en el contexto de la llamada
+          throw error;
         }
       };
+      
+      
       
 
     // Obtener las coordenadas del patrón
@@ -262,53 +277,69 @@ app.post('/subirArchivoFirmado', (req, res) => {
     console.log('Coordenadas encontradas:', coords);
 
     // Definimos la escala
-    const escala = 0.5;
+    const escala = 0.4;
 
     // Agregar firma en el pdf
     const agregar_imagen_a_pdf = async (pdfPath, outputPath, firmaPath, coordenadas, escala) => {
       try {
-        // Validar que 'coordenadas' es un array
         if (!Array.isArray(coordenadas)) {
           throw new TypeError('Las coordenadas proporcionadas no son un array.');
         }
     
         const pdfDoc = await PDFDocument.load(fs.readFileSync(pdfPath));
         const firmaImagen = await pdfDoc.embedPng(fs.readFileSync(firmaPath));
-        
-        // Obtener dimensiones originales de la imagen
+    
         const { width: imagenWidth, height: imagenHeight } = firmaImagen;
     
-        // Iterar sobre las coordenadas encontradas y añadir la firma
         for (const coord of coordenadas) {
-          const { x, y, page } = coord;
-          const pdfPage = pdfDoc.getPage(page - 1); // Nota: las páginas en PDF-lib están indexadas desde 0
-          
-          // Calcular tamaño de la imagen con la escala aplicada
-          const width = imagenWidth * escala;
-          const height = imagenHeight * escala;
+          const { page: pageIndex, x, y, width: patronWidth, height: patronHeight } = coord;
+          const pdfPage = pdfDoc.getPage(pageIndex - 1);
     
-          // Añadir la imagen en las coordenadas especificadas
-          pdfPage.drawImage(firmaImagen, {
-            x,
-            y,
-            width,
-            height
+          // Calcular tamaño de la imagen con la escala aplicada
+          const escalaWidth = imagenWidth * escala;
+          const escalaHeight = imagenHeight * escala;
+    
+          // Ajustar el tamaño del rectángulo para cubrir completamente el patrón
+          pdfPage.drawRectangle({
+            x: x, // Posición x del patrón
+            y: y, // Posición y del patrón
+            width: patronWidth, // Tamaño del patrón en el ancho
+            height: patronHeight, // Tamaño del patrón en la altura
+            color: rgb(1, 1, 1), // Color blanco para borrar el patrón
+            borderWidth: 0
           });
+    
+          // Calcular el centro del área del patrón
+          const patronCenterX = x + patronWidth / 2;
+          const patronCenterY = y + patronHeight / 2;
+
+   
+    
+          // Ajustar las coordenadas de la imagen para que esté centrada en el área del patrón
+          pdfPage.drawImage(firmaImagen, {
+            x: patronCenterX - (escalaWidth / 2),
+            y: patronCenterY - (escalaHeight / 2),
+            width: escalaWidth,
+            height: escalaHeight
+          });
+    
+          console.log(`Imagen añadida en página: ${pageIndex}, coordenadas: (x:${patronCenterX - (escalaWidth / 2)}, y: ${patronCenterY - (escalaHeight / 2)}), tamañoImg: (ancho: ${escalaWidth}, alto: ${escalaHeight})`);
         }
     
         const pdfBytes = await pdfDoc.save();
         fs.writeFileSync(outputPath, pdfBytes);
         console.log('PDF firmado y guardado exitosamente');
-
-        // Indicar que la imagen se agregó correctamente
+    
         return { success: true };
-
       } catch (error) {
         console.error('Error al agregar imagen al PDF:', error);
+        throw error;
       }
-
-
     };
+    
+    
+    
+
     const guardar_pdfFirmado = async (pdfPath, outputPath, firmaPath, coordenadas, escala, documentoId, documentoContrato, carpeta, nuevaVersion) => {
       // Llamar a la función para agregar la imagen al PDF
       const resultado = await agregar_imagen_a_pdf(pdfPath, outputPath, firmaPath, coordenadas, escala);
@@ -325,7 +356,34 @@ app.post('/subirArchivoFirmado', (req, res) => {
             nuevaVersion,
             "Nueva versión con firma incorporada"
           ]);
-          console.log('Documento firmado guardado en la base de datos exitosamente');
+
+
+          //cambiar el estado del patrón en el archivo pdf firmado (con esto indicamos que el patron para firmar ya no está en el pdf porque este se firmó)
+          await pool.query('UPDATE pdf_files SET patron_presente = $1 WHERE id = $2', [
+            false,
+            documentoId
+          ]);
+          const firmaArchiBD = `Firma_generada_por_usuario_para_el_doc:${documentoContrato}`;
+
+          // Guardar la firma en la base de datos
+          const consultaBD = `
+            INSERT INTO pdf_files (documento, carpeta, tipo_documento, descripcion, file_path)
+            VALUES ($1, $2, $3, $4, $5)
+          `;
+          const values = [
+            firmaArchiBD,
+            carpeta,
+            'Firma',
+            documentoContrato,
+            ubicacionParaGuardarFirma
+          ];
+
+          await pool.query(consultaBD, values);
+     
+
+          res.status(200).json({ success: 'PDF firmado y guardado exitosamente' });
+          
+          //console.log('Documento firmado guardado en la base de datos exitosamente');
         } catch (dbError) {
           console.error('Error al guardar en la base de datos:', dbError);
         }
