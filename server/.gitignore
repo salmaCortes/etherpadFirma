@@ -1,6 +1,5 @@
 /etherpad-win.exe
 /etherpad-win.zip
-node_modules/
 /etherpad-lite/node_modules
 !settings.json.template
 /etherpad-lite/APIKEY.txt
