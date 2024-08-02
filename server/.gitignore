@@ -28,6 +28,10 @@
 # node modules
 /etherpad-lite/admin/node_modules/
 /etherpad-lite/node_modules/
+
 #apikey
 /etherpad-lite/APIKEY.txt
+601a87ab7f81cdc9b59e24fbe404210502bc7766 
+/etherpad-lite/node_modules/.pnpm/canvas@2.11.2/node_modules/canvas/build/Release/librsvg-2.so.2
+
 
