@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeffrey"
+		]
+	},
+	"ep_line_spacing.spacing": "Line spacing",
+	"ep_line_spacing.one_line_spacing": "One line spacing",
+	"ep_line_spacing.two_line_spacing": "Two line spacing"
+}

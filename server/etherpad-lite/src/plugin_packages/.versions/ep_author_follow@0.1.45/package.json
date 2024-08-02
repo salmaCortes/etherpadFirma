@@ -1,0 +1,31 @@
+{
+  "name": "ep_author_follow",
+  "version": "0.1.45",
+  "description": "Follow an Authors contributions to a Pad",
+  "author": "John McLear <john@mclear.co.uk>",
+  "contributors": [],
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ether/ep_author_follow.git"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://etherpad.org/"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-etherpad": "^3.0.9",
+    "typescript": "^4.6.2"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "engines": {
+    "node": ">=12.17.0"
+  },
+  "peerDependencies": {
+    "ep_etherpad-lite": ">=1.8.6"
+  }
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"ep_ice_font_color.color": "Faarf",
+	"ep_ice_font_color.black": "schwaarz",
+	"ep_ice_font_color.red": "rout",
+	"ep_ice_font_color.green": "gréng",
+	"ep_ice_font_color.blue": "blo"
+}
