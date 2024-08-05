@@ -100,15 +100,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const cargarPDF = async (ruta) => {
-  try {
-    const pdfBytes = fs.readFileSync(ruta);
-    const pdfDoc = await PDFDocument.load(pdfBytes);
-    console.log('PDF cargado correctamente');
-  } catch (error) {
-    console.error('Error al cargar el PDF:', error);
-  }
-};
 
 // Manejo del método POST DE SUBIR EL ARCHIVO
 app.post('/subirArchivo', upload.single('archivo'), (req, res) => {
@@ -134,7 +125,7 @@ app.post('/subirArchivo', upload.single('archivo'), (req, res) => {
     }
   );
 
-  cargarPDF(rutaArchivo); // Llama a la función para cargar el PDF
+  //cargarPDF(rutaArchivo); // Llama a la función para cargar el PDF
 });
 
 // Manejo del backend de la solicitud GET
@@ -196,7 +187,6 @@ app.post('/subirArchivoFirmado', (req, res) => {
         }
       });
 
-     
 
       
 
@@ -248,15 +238,15 @@ app.post('/subirArchivoFirmado', (req, res) => {
                 const height = item.height || 0; //tendrá valor de cero si el patron no tiene altura
       
                 // Ajuste para cubrir los corchetes y otros elementos visuales
-                const margin = 10; // Margen adicional para incluir los corchetes
+                //const margin = 10; // Margen adicional para incluir los corchetes
       
                 coords.push({
                   patron,
                   page: i + 1,
-                  x: x - margin,
-                  y: y - margin,
-                  width: width + 2 * margin, //width: width + (2 * margin)
-                  height: height + 2 * margin
+                  x: x , // x: x - margin
+                  y: y ,//y - margin
+                  width: width, // width + 2 * margin //width: width + (2 * margin)
+                  height: height  //height + 2 * margin
                 });
               }
             }
@@ -300,6 +290,7 @@ app.post('/subirArchivoFirmado', (req, res) => {
           const escalaHeight = imagenHeight * escala;
     
           // Ajustar el tamaño del rectángulo para cubrir completamente el patrón
+          /*
           pdfPage.drawRectangle({
             x: x, // Posición x del patrón
             y: y, // Posición y del patrón
@@ -308,6 +299,7 @@ app.post('/subirArchivoFirmado', (req, res) => {
             color: rgb(1, 1, 1), // Color blanco para borrar el patrón
             borderWidth: 0
           });
+          */
     
           // Calcular el centro del área del patrón
           const patronCenterX = x + patronWidth / 2;
@@ -319,8 +311,8 @@ app.post('/subirArchivoFirmado', (req, res) => {
           pdfPage.drawImage(firmaImagen, {
             x: patronCenterX - (escalaWidth / 2),
             y: patronCenterY - (escalaHeight / 2),
-            width: escalaWidth,
-            height: escalaHeight
+            width: escalaWidth, 
+            height: escalaHeight 
           });
     
           console.log(`Imagen añadida en página: ${pageIndex}, coordenadas: (x:${patronCenterX - (escalaWidth / 2)}, y: ${patronCenterY - (escalaHeight / 2)}), tamañoImg: (ancho: ${escalaWidth}, alto: ${escalaHeight})`);
