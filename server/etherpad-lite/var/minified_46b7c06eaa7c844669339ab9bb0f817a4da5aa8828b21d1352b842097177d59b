@@ -1,0 +1,3 @@
+require.define({"ep_ice_font_color/static/js/shared.js": {"(module ep_ice_font_color/static/js/shared.js)": function (require, exports, module) {"use strict";const collectContentPre=(c,o)=>{const t=/(?:^| )color:([A-Za-z0-9]*)/.exec(o.cls);t&&t[1]&&o.cc.doAttrib(o.state,`color::${t[1]}`)},collectContentPost=(c,o)=>{};exports.collectContentPre=collectContentPre,exports.collectContentPost=collectContentPost;
+}}["(module ep_ice_font_color/static/js/shared.js)"],
+});

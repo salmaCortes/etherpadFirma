@@ -1,0 +1,14 @@
+require.define({"ep_invite_via_email/static/js/invite_via_email.js": {"(module ep_invite_via_email/static/js/invite_via_email.js)": function (require, exports, module) {"use strict";exports.postAceInit=(n,o,s)=>{$("#embedcode").append(`</div><br><br>
+      <h2>Invite someone to this pad:</h2>
+      <div id="emailform">
+        Your name: <br>
+        <input id="youremailnameinput" type="text" value="">
+        <br>
+        The email address of the person you want to invite:
+        <br>
+        <input id="emailrcptinput" type="text" value="">
+        <br><br>
+        <button class="sendEmailButton">Send invitation</button>
+        </div>`),$(".sendEmailButton").click(()=>{const e=$("#linkinput").val(),i=$("#youremailnameinput").val(),t=$("#emailrcptinput").val(),a=`name=${i}&email=${t}&padurl=${e}`;$.ajax({type:"GET",url:"/server_invite_via_email",data:a}).done(r=>{}),$.gritter.add({title:"Invitation sent...",text:`Email sent to ${t}`,sticky:!1}),$("#embed").removeClass("popup-show")})};
+}}["(module ep_invite_via_email/static/js/invite_via_email.js)"],
+});

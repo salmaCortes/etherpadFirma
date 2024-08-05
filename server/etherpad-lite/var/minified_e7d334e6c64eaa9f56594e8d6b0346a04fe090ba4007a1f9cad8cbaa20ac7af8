@@ -1,0 +1,1 @@
+.commenticon{vertical-align:middle;background-repeat:no-repeat;width:16px;height:16px;display:inline-block}.commenticon:before{content:"";color:#666;padding-top:2px;font-family:fontawesome-etherpad;font-size:14px;line-height:17px}

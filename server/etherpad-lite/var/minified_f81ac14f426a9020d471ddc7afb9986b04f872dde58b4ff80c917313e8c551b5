@@ -1,0 +1,3 @@
+require.define({"ep_image_upload/static/js/contentCollection.js": {"(module ep_image_upload/static/js/contentCollection.js)": function (require, exports, module) {"use strict";exports.collectContentImage=(c,{node:t,state:{lineAttributes:e},tname:s})=>{(s==="div"||s==="p")&&delete e.img,s==="img"&&(e.img=t.currentSrc||t.src||t.attribs&&t.attribs.src)},exports.collectContentPre=(c,t)=>{},exports.collectContentPost=(c,t)=>{const e=t.tname,r=t.state.lineAttributes;e==="img"&&delete r.img},exports.ccRegisterBlockElements=(c,t)=>["img"];
+}}["(module ep_image_upload/static/js/contentCollection.js)"],
+});
