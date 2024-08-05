@@ -162,7 +162,8 @@ export const Firmar = () => {
 
     const handleOK = () => {
         setModalConfirmArchiFirm(false);
-        window.location.reload();
+        //window.location.reload();
+        cargarDocumentos();
     };
 
     return (

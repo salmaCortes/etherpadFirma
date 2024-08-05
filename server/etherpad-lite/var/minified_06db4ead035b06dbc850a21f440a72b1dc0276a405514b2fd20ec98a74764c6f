@@ -1,0 +1,3 @@
+require.define({"ep_subscript_and_superscript/static/js/shared.js": {"(module ep_subscript_and_superscript/static/js/shared.js)": function (require, exports, module) {"use strict";exports.collectContentPre=(c,t,o)=>{const e=t.tname,s=t.state;return e==="sub"&&t.cc.doAttrib(s,e),e==="sup"&&t.cc.doAttrib(s,e),o()},exports.collectContentPost=(c,t,o)=>o();
+}}["(module ep_subscript_and_superscript/static/js/shared.js)"],
+});

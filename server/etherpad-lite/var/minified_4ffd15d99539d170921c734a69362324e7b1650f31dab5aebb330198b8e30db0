@@ -1,0 +1,3 @@
+require.define({"ep_comments_page/static/js/commentL10n.js": {"(module ep_comments_page/static/js/commentL10n.js)": function (require, exports, module) {"use strict";const localize=t=>{html10n.translateElement(html10n.translations,t.get(0))};exports.localize=localize;
+}}["(module ep_comments_page/static/js/commentL10n.js)"],
+});
