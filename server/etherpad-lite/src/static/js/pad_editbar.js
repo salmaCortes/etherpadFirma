@@ -407,7 +407,6 @@ exports.padeditbar = new class {
     this.registerAceCommand('italic', aceAttributeCommand);
     this.registerAceCommand('underline', aceAttributeCommand);
     this.registerAceCommand('strikethrough', aceAttributeCommand);
-   
 
     this.registerAceCommand('undo', (cmd, ace) => {
       ace.ace_doUndoRedo(cmd);

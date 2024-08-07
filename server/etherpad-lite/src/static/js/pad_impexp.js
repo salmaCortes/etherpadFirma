@@ -22,6 +22,9 @@
  * limitations under the License.
  */
 
+import html10n from './vendors/html10n';
+
+
 const padimpexp = (() => {
   let pad;
 
@@ -64,7 +67,7 @@ const padimpexp = (() => {
         return {code: 2, message: 'Unknown import error'};
       });
       if (code !== 0) {
-        //importErrorMessage(message);
+        importErrorMessage(message);
       } else {
         $('#import_export').removeClass('popup-show');
         if (directDatabaseAccess) window.location.reload();
@@ -97,7 +100,7 @@ const padimpexp = (() => {
 
     if ($('#importexport .importmessage').is(':visible')) {
       $('#importmessagesuccess').fadeOut('fast');
-      $('#impleortmessagefail').fadeOut('fast', () => showError(true));
+      $('#importmessagefail').fadeOut('fast', () => showError(true));
     } else {
       showError();
     }

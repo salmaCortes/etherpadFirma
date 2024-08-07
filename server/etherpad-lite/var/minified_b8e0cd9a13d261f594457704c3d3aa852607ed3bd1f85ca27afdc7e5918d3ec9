@@ -1,3 +1,0 @@
-require.define({"ep_cursortrace/static/js/css.js": {"(module ep_cursortrace/static/js/css.js)": function (require, exports, module) {"use strict";exports.aceEditorCSS=(c,s)=>["/ep_cursortrace/static/css/cursortrace.css"];
-}}["(module ep_cursortrace/static/js/css.js)"],
-});

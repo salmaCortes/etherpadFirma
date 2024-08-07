@@ -1,3 +1,0 @@
-require.define({"ep_align/static/js/shared.js": {"(module ep_align/static/js/shared.js)": function (require, exports, module) {"use strict";const tags=["left","center","justify","right"];exports.collectContentPre=(a,t,s)=>{const e=t.tname,n=t.state.lineAttributes,i=tags.indexOf(e);return(e==="div"||e==="p")&&delete n.align,i>=0&&(n.align=tags[i]),s()},exports.collectContentPost=(a,t,s)=>{const e=t.tname,n=t.state.lineAttributes;return tags.indexOf(e)>=0&&delete n.align,s()};
-}}["(module ep_align/static/js/shared.js)"],
-});

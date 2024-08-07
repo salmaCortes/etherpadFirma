@@ -1,3 +1,0 @@
-require.define({"ep_countable/static/js/index.js": {"(module ep_countable/static/js/index.js)": function (require, exports, module) {exports.handleMessage=e=>{$("#ep_countable-popup.popup-show").length!==0&&updateCounter()},exports.aceInitialized=(e,o,p)=>(window.countableEditorInfo=o.editorInfo,p());
-}}["(module ep_countable/static/js/index.js)"],
-});

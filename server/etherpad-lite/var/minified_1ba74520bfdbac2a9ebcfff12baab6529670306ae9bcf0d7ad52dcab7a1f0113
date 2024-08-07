@@ -1,3 +1,0 @@
-require.define({"ep_font_family/static/js/shared.js": {"(module ep_font_family/static/js/shared.js)": function (require, exports, module) {"use strict";const fonts=["fontarial","fontavant-garde","fontbookman","fontcalibri","fontcourier","fontgaramond","fonthelvetica","fontmonospace","fontpalatino","fonttimes-new-roman"];exports.collectContentPre=(e,t)=>{const n=t.tname,o=t.state;fonts.indexOf(n)!==-1&&t.cc.doAttrib(o,n)},exports.collectContentPost=(e,t)=>{const n=t.tname,a=t.state.lineAttributes;n>=0&&delete a.sub};
-}}["(module ep_font_family/static/js/shared.js)"],
-});

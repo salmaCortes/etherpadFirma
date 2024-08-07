@@ -1,3 +1,0 @@
-require.define({"ep_font_size/static/js/shared.js": {"(module ep_font_size/static/js/shared.js)": function (require, exports, module) {"use strict";const range=(e,t,c=1)=>[...Array(Math.ceil((t-e)/c)).keys()].map(o=>o*c+e);exports.collectContentPre=(e,t)=>{const c=/(?:^| )font-size:([A-Za-z0-9]*)/.exec(t.cls);c&&c[1]&&t.cc.doAttrib(t.state,`font-size:${c[1]}`)},exports.sizes=[].concat(range(8,20)).concat(range(20,30,2)).concat(range(30,50,5)).concat(range(50,70,10));
-}}["(module ep_font_size/static/js/shared.js)"],
-});

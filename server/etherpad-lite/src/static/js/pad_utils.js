@@ -356,7 +356,6 @@ const padutils = {
 let globalExceptionHandler = null;
 padutils.setupGlobalExceptionHandler = () => {
   if (globalExceptionHandler == null) {
-    require('./vendors/gritter');
     globalExceptionHandler = (e) => {
       let type;
       let err;
@@ -383,11 +382,10 @@ padutils.setupGlobalExceptionHandler = () => {
           msgAlreadyVisible = true;
         }
       });
-      
+
       if (!msgAlreadyVisible) {
         const txt = document.createTextNode.bind(document); // Convenience shorthand.
         const errorMsg = [
-          /*
           $('<p>')
               .append($('<b>').text('Please press and hold Ctrl and press F5 to reload this page')),
           $('<p>')
@@ -399,17 +397,14 @@ padutils.setupGlobalExceptionHandler = () => {
               .append(txt(type)).append($('<br>'))
               .append(txt(`URL: ${window.location.href}`)).append($('<br>'))
               .append(txt(`UserAgent: ${navigator.userAgent}`)).append($('<br>')),
-          */
         ];
 
         $.gritter.add({
-          /*
           title: 'An error occurred',
           text: errorMsg,
           class_name: 'error',
           position: 'bottom',
           sticky: true,
-          */
         });
       }
 
@@ -447,7 +442,7 @@ const inThirdPartyIframe = () => {
 // This file is included from Node so that it can reuse randomString, but Node doesn't have a global
 // window object.
 if (typeof window !== 'undefined') {
-  exports.Cookies = require('js-cookie/dist/js.cookie').withAttributes({
+  exports.Cookies = require('js-cookie').withAttributes({
     // Use `SameSite=Lax`, unless Etherpad is embedded in an iframe from another site in which case
     // use `SameSite=None`. For iframes from another site, only `None` has a chance of working
     // because the cookies are third-party (not same-site). Many browsers/users block third-party

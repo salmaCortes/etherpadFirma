@@ -13,36 +13,21 @@ import i18n from "./localization/i18n.ts";
 import {PadPage} from "./pages/PadPage.tsx";
 import {ToastDialog} from "./utils/Toast.tsx";
 import {ShoutPage} from "./pages/ShoutPage.tsx";
-import { Firmar } from './pages/Firmar.tsx';
-import SubirArchivo from './pages/SubirArchivo.tsx';
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <>
-            <Route element={<App />}>
-                <Route index element={<HomePage />} />
-                <Route path="/plugins" element={<HomePage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/help" element={<HelpPage />} />
-                <Route path="/pads" element={<PadPage />} />
-                <Route path="/shout" element={<ShoutPage />} />
-            </Route>
-            <Route path="/login">
-                <Route index element={<LoginScreen />} />
-            </Route>
-            <Route path="/subirArchivo">
-                <Route index element={<SubirArchivo />} />
-            </Route>
-            <Route path="/firmar">
-                <Route index element={<Firmar />} />
-            </Route>
-        </>
-    ), 
-    {
-        basename: import.meta.env.BASE_URL
-    }
-);
-
+const router = createBrowserRouter(createRoutesFromElements(
+    <><Route element={<App/>}>
+        <Route index element={<HomePage/>}/>
+        <Route path="/plugins" element={<HomePage/>}/>
+        <Route path="/settings" element={<SettingsPage/>}/>
+        <Route path="/help" element={<HelpPage/>}/>
+        <Route path="/pads" element={<PadPage/>}/>
+        <Route path="/shout" element={<ShoutPage/>}/>
+    </Route><Route path="/login">
+        <Route index element={<LoginScreen/>}/>
+    </Route></>
+), {
+    basename: import.meta.env.BASE_URL
+})
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,3 +1,0 @@
-require.define({"ep_comments_page/static/js/shared.js": {"(module ep_comments_page/static/js/shared.js)": function (require, exports, module) {"use strict";const randomString=require("ep_etherpad-lite/static/js/pad_utils").randomString,collectContentPre=(n,e,o)=>{const t=/(?:^| )(c-[A-Za-z0-9]*)/.exec(e.cls),m=/(?:^| )(fakecomment-[A-Za-z0-9]*)/.exec(e.cls);if(t&&t[1]&&e.cc.doAttrib(e.state,`comment::${t[1]}`),m){const c=pad.plugins.ep_comments_page.getMapfakeComments(),s=m[1],a=c[s];e.cc.doAttrib(e.state,`comment::${a}`)}return o()};exports.collectContentPre=collectContentPre,exports.generateCommentId=()=>`c-${randomString(16)}`;
-}}["(module ep_comments_page/static/js/shared.js)"],
-});
