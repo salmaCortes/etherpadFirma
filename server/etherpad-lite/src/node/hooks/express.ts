@@ -128,6 +128,8 @@ exports.restartServer = async () => {
   }
 
   app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "OPTIONS, HEAD, GET, POST, PUT, DELETE");
     // res.header("X-Frame-Options", "deny"); // breaks embedded pads
     if (settings.ssl) {
       // we use SSL
@@ -138,6 +140,7 @@ exports.restartServer = async () => {
     // https://github.com/ether/etherpad-lite/issues/2547
     res.header('X-UA-Compatible', 'IE=Edge,chrome=1');
 
+
     // Enable a strong referrer policy. Same-origin won't drop Referers when
     // loading local resources, but it will drop them when loading foreign resources.
     // It's still a last bastion of referrer security. External URLs should be
@@ -145,7 +148,10 @@ exports.restartServer = async () => {
     // marked with <meta name="referrer" content="no-referrer">
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
     // https://github.com/ether/etherpad-lite/pull/3636
-    res.header('Referrer-Policy', 'same-origin');
+
+    //res.header('Referrer-Policy', 'same-origin');
+    res.header('Referrer-Policy', 'unsafe-url');
+
 
     // send git version in the Server response header if exposeVersion is true.
     if (settings.exposeVersion) {

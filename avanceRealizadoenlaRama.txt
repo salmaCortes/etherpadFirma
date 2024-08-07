@@ -1,0 +1,6 @@
+Se modificaron los archivos:
+pad.html
+index.html -- es el index de la carpeta de admin
+main.tsx
+express.ts
+Firmar.tsx

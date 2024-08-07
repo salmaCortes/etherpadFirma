@@ -84,6 +84,49 @@
       <!----------------------------->
       <!--- PAD EDITOR (in iframe) -->
       <!----------------------------->
+      <div id="compoFirmar"></div>
+      <script type="module" src="../../admin/src/pages/Firmar.tsx"></script>
+
+     <!-- <script type="module" src="../../admin/src/pages/Firmar.tsx"></script> -->
+      
+      <!--Código de prueba-->
+      <!--
+        <div className="modal-dialog">
+          <div className="modal-content">
+              <div className="modal-header">
+                  <h5 className="modal-title">Modal de firmas</h5>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick=""></button>
+              </div>
+              <div className="modal-body">
+                  <form method="POST" onSubmit="">
+                      <h5>Coloca el identificador que contiene el contrato.</h5>
+                      <p className="fw-medium text-muted fs-6">El nombre del identificador debe ir dentro de corchetes "[ ]"</p>
+                      <input
+                          type="text"
+                          name="identificador"
+                          placeholder="Ejemplo: [Firma del cliente]"
+                          width="100%"
+                          value="identificador"
+                          onChange=""
+                      />
+                      <div className="canvas-container">
+                          <canvas ref=""className="canvas canvas-design" id="canvas" width="300" height="250"></canvas>
+                      </div>
+                      <br />
+                          <input ref="" type="hidden" name="firma" id="firma" />
+                          <input type="hidden" name="carpeta" value="" />
+                          <input type="hidden" name="documento" value="" />
+                          <input type="hidden" name="documentoId" value="" />
+                      <br />
+                  </form>
+              </div>
+              <div className="modal-footer d-flex justify-content-center">
+                  <button className="btn btn-primary" type="button" onClick="">Limpiar</button>
+                  <button className="btn btn-secondary" type="button" onClick="">Guardar Firma</button>
+              </div>
+          </div>
+      </div>
+      -->
 
       <div id="editorcontainer" class="editorcontainer"></div>
 

@@ -55,3 +55,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </I18nextProvider>
   </React.StrictMode>,
 )
+
+/*
+const firmarDiv = document.getElementById('compoFirmar');
+if (firmarDiv) {
+    const componenteFirma = ReactDOM.createRoot(firmarDiv);
+    componenteFirma.render(
+        
+        <Firmar />
+       
+    );
+}
+*/
