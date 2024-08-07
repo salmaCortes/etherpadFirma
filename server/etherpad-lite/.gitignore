@@ -1,7 +1,6 @@
 /etherpad-win.exe
 /etherpad-win.zip
 node_modules
-/settings.json
 !settings.json.template
 APIKEY.txt
 SESSIONKEY.txt
@@ -28,3 +27,4 @@ plugin_packages
 playwright-report
 state.json
 /src/static/oidc
+/src/templates/padEditor

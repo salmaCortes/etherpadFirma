@@ -384,8 +384,10 @@ padutils.setupGlobalExceptionHandler = () => {
       });
 
       if (!msgAlreadyVisible) {
+        /*
         const txt = document.createTextNode.bind(document); // Convenience shorthand.
         const errorMsg = [
+          
           $('<p>')
               .append($('<b>').text('Please press and hold Ctrl and press F5 to reload this page')),
           $('<p>')
@@ -397,14 +399,18 @@ padutils.setupGlobalExceptionHandler = () => {
               .append(txt(type)).append($('<br>'))
               .append(txt(`URL: ${window.location.href}`)).append($('<br>'))
               .append(txt(`UserAgent: ${navigator.userAgent}`)).append($('<br>')),
+          
         ];
+        */
 
         $.gritter.add({
+           /*
           title: 'An error occurred',
           text: errorMsg,
           class_name: 'error',
           position: 'bottom',
           sticky: true,
+          */
         });
       }
 

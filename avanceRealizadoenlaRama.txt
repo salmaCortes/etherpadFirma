@@ -1,0 +1,13 @@
+Se modificaron los archivos:
+plugins _instalados.txt
+server/etherpad-lite/admin/src/pages/Firmar.tsx
+server/etherpad-lite/src/node/utils/Settings.ts
+server/etherpad-lite/src/static/skins/colibris/pad.css
+server/etherpad-lite/src/templates/pad.html
+
+
+Archivos que  se crearon:
+tsconfig.json 
+ vite.config.json 
+se crearon estos archivos para que con el comando npx vite build en el path "server/etherpad-lite"...
+... se creara un archivo js del componente "Firmar.jsx" para así, que no hubiese problemas a la hora de que se ejecutará react en el editor, pero, no funcionó 

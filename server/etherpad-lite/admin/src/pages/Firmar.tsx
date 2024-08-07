@@ -208,10 +208,10 @@ export const Firmar = () => {
                                     <canvas ref={canvasRef} className="canvas canvas-design" id="canvas" width="300" height="250"></canvas>
                                 </div>
                                 <br />
-                                <input ref={firmaInputRef} type="hidden" name="firma" id="firma" />
-                                <input type="hidden" name="carpeta" value={modalValores.carpeta} />
-                                <input type="hidden" name="documento" value={modalValores.documento} />
-                                <input type="hidden" name="documentoId" value={modalValores.documentoId} />
+                                    <input ref={firmaInputRef} type="hidden" name="firma" id="firma" />
+                                    <input type="hidden" name="carpeta" value={modalValores.carpeta} />
+                                    <input type="hidden" name="documento" value={modalValores.documento} />
+                                    <input type="hidden" name="documentoId" value={modalValores.documentoId} />
                                 <br />
                             </form>
                         </div>
@@ -242,3 +242,5 @@ export const Firmar = () => {
         </div>
     );
 };
+
+
