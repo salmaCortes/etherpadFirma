@@ -1,0 +1,20 @@
+{
+  "name": "ep_countable",
+  "version": "0.0.13",
+  "description": "Displays paragraphs, sentences, words and characters counts.",
+  "author": {
+    "name": "Luc Didry",
+    "email": "luc@didry.org",
+    "url": "https://fiat-tux.fr"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://framagit.org/framasoft/Etherpad/ep_countable.git"
+  },
+  "bugs": {
+    "url": "https://framagit.org/framasoft/Etherpad/ep_countable/-/issues"
+  },
+  "license": "Apache-2.0"
+}
