@@ -4,3 +4,11 @@ index.html -- es el index de la carpeta de admin
 main.tsx
 express.ts
 Firmar.tsx
+package.json -- el primer package.json de etherpad
+
+
+Archivos que  se crearon:
+tsconfig.json 
+ vite.config.json 
+se crearon estos archivos para que con el comando npx vite build en el path "server/etherpad-lite"...
+... se creara un archivo js del componente "Firmar.jsx" para así, que no hubiese problemas a la hora de que se ejecutará react en el editor, pero, no funcionó 
