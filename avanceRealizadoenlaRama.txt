@@ -1,10 +1,9 @@
 Se modificaron los archivos:
-pad.html
-index.html -- es el index de la carpeta de admin
-main.tsx
-express.ts
-Firmar.tsx
-package.json -- el primer package.json de etherpad
+plugins _instalados.txt
+server/etherpad-lite/admin/src/pages/Firmar.tsx
+server/etherpad-lite/src/node/utils/Settings.ts
+server/etherpad-lite/src/static/skins/colibris/pad.css
+server/etherpad-lite/src/templates/pad.html
 
 
 Archivos que  se crearon:

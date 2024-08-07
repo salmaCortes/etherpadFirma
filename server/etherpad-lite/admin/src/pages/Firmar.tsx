@@ -1,8 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import './css/firmar.css';
-import ReactDOM from 'react-dom/client'  
-
 
 export const Firmar = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -245,18 +243,4 @@ export const Firmar = () => {
     );
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    const firmarDiv = document.getElementById('compoFirmar');
 
-    if ( firmarDiv) {
-        
-        const root = ReactDOM.createRoot(firmarDiv);
-        root.render(
-            
-            <Firmar />
-            
-        );
-      
-    }
-});
