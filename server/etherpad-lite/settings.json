@@ -443,8 +443,9 @@
    */
   "disableIPlogging": false,
 
+  //level: Info
   "logging": {
-    "level": "INFO",
+    "level": "DEBUG",
     "appender": [
         {
             "type": "file",

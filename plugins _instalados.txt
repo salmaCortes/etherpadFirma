@@ -15,5 +15,6 @@ ep_mammoth
 ep_print_preview_pdf
 ep_set_title_on_pad
 
+
 Plugin que tenemos que agregar a la carpeta node_modules de forma manual:
 ep_importexport - se encuentra en "carpeta_de_plugins/plugin_de_importarDocx_y_PDF"

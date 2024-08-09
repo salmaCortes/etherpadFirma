@@ -236,7 +236,8 @@ app.post('/subirArchivoFirmado', (req, res) => {
           for (let i = 0; i < pdfDoc.numPages; i++) {
             const page = await pdfDoc.getPage(i + 1); // Obtenemos las páginas del PDF
             const textContent = await page.getTextContent(); // Obtenemos el texto de cada página del PDF
-      
+            
+            //Se obtine el texto
             for (const item of textContent.items) { // Recorremos cada texto en el archivo PDF
               if (item.str.includes(patron)) {
                 // Obtener las coordenadas del texto
